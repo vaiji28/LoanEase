@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LoanEase - Loan Information</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6b7280;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* CLICKABLE CARD */
+
+        .info-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 22px;
+            background: #fafcff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+            border-color: #2563eb;
+        }
+
+        .info-card h3 {
+            color: #2563eb;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* HIDDEN DETAILS */
+
+        .details {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #ddd;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .info-card.active .details {
+            display: block;
+        }
+
+        .click-text {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .process {
+            margin-top: 30px;
+            padding: 25px;
+            background: #eff6ff;
+            border-radius: 12px;
+        }
+
+        .process h2 {
+            color: #1d4ed8;
+            margin-bottom: 15px;
+        }
+
+        .process p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .apply-btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 14px 28px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 700px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            LoanEase
+        </div>
+
+        <a href="{% url 'home' %}" class="back">
+            ← Back to Home
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>Loan Information</h1>
+
+            <p>
+                Click any card to view more information
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="info-grid">
+
+
+                <!-- INTEREST RATE -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Interest Rate</h3>
+
+                    <p>
+                        10% per annum
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        The standard interest rate for LoanEase is
+                        <strong>10% per annum</strong>.
+                        The final applicable rate may depend on
+                        the loan application and eligibility.
+                    </div>
+
+                </div>
+
+
+                <!-- LOAN AMOUNT -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Loan Amount</h3>
+
+                    <p>
+                        Based on eligibility
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        The approved loan amount depends on your
+                        income, employment status and repayment
+                        capacity.
+                    </div>
+
+                </div>
+
+
+                <!-- LOAN TENURE -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Loan Tenure</h3>
+
+                    <p>
+                        12 months repayment plan
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        LoanEase currently uses a
+                        <strong>12-month repayment tenure</strong>
+                        for the standard loan calculation.
+                    </div>
+
+                </div>
+
+
+                <!-- EMI -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>EMI</h3>
+
+                    <p>
+                        Monthly repayment amount
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        EMI means Equated Monthly Instalment.
+                        It is the fixed monthly amount paid towards
+                        the loan repayment.
+                    </div>
+
+                </div>
+
+
+                <!-- ELIGIBILITY -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Eligibility</h3>
+
+                    <p>
+                        Income, employment & repayment capacity
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        Eligibility is evaluated based on your
+                        monthly income, employment status,
+                        requested loan amount and repayment capacity.
+                    </div>
+
+                </div>
+
+
+                <!-- DOCUMENTS -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Documents Required</h3>
+
+                    <p>
+                        ID, address & income proof
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        Common documents include government-issued
+                        identity proof, address proof and income proof.
+                    </div>
+
+                </div>
+
+
+                <!-- PROCESSING FEE -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Processing Fee</h3>
+
+                    <p>
+                        As applicable
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        Processing charges may apply depending on
+                        the loan type and application.
+                    </div>
+
+                </div>
+
+
+                <!-- REPAYMENT -->
+
+                <div class="info-card" onclick="toggleCard(this)">
+
+                    <h3>Repayment</h3>
+
+                    <p>
+                        Monthly EMI repayment
+                    </p>
+
+                    <div class="click-text">
+                        Click to know more
+                    </div>
+
+                    <div class="details">
+                        After loan disbursement, the borrower
+                        repays the loan through monthly EMI payments
+                        according to the selected repayment plan.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOAN PROCESS -->
+
+            <div class="process">
+
+                <h2>Loan Process</h2>
+
+                <p>
+                    Apply → Verify → Decision → Disbursement → Repayment
+                </p>
+
+            </div>
+
+
+            <a href="{% url 'loan_application' %}" class="apply-btn">
+                Apply for a Loan
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function toggleCard(card) {
+
+            card.classList.toggle("active");
+
+        }
+
+    </script>
+
+</body>
+</html>

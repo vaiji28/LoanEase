@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LoanEase - Loan Application</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-text {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 35px 20px 20px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 34px;
+            color: #312e81;
+        }
+
+        .hero p {
+            color: #6b7280;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 950px;
+            margin: 20px auto 50px;
+            background: white;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 12px 40px rgba(79, 70, 229, 0.12);
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #312e81;
+            margin-bottom: 22px;
+        }
+
+        .section-title span {
+            font-size: 14px;
+            font-weight: normal;
+            color: #9ca3af;
+            margin-left: 8px;
+        }
+
+        /* FEATURES */
+        .loan-info {
+            margin-bottom: 32px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f3ff, #eef2ff);
+            border: 1px solid #e0e7ff;
+            border-radius: 16px;
+            display: flex;
+            gap: 18px;
+            justify-content: space-between;
+        }
+
+        .info-item {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+            transition: 0.2s;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(79, 70, 229, 0.14);
+        }
+
+        .info-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #312e81;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        /* FORM */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* ERROR */
+        .error {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* BUTTON */
+        .submit-btn {
+            width: 100%;
+            margin-top: 28px;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+        }
+
+        /* SECURITY TEXT */
+        .secure {
+            text-align: center;
+            margin-top: 15px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .nav-text {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .main-container {
+                margin: 15px;
+                padding: 25px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .loan-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo">
+            🏦 Loan<span>Ease</span>
+        </div>
+
+        <div class="nav-text">
+            Simple • Secure • Fast
+        </div>
+
+    </div>
+
+
+    <!-- HERO -->
+    <div class="hero">
+
+        <h1>Apply for Your Loan</h1>
+
+        <p>
+            Complete the form below and let us process your application.
+        </p>
+
+    </div>
+
+
+    <!-- MAIN -->
+    <div class="main-container">
+
+        <!-- TITLE -->
+        <div class="section-title">
+            Personal & Loan Details
+            <span>All fields are required</span>
+        </div>
+
+
+        <!-- FEATURES -->
+        <div class="loan-info">
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    ⚡
+                </div>
+
+                <div class="info-title">
+                    Quick Process
+                </div>
+
+                <div class="info-text">
+                    Simple and fast online application
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    🔐
+                </div>
+
+                <div class="info-title">
+                    Secure
+                </div>
+
+                <div class="info-text">
+                    Your personal information is protected
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    💰
+                </div>
+
+                <div class="info-title">
+                    Easy EMI
+                </div>
+
+                <div class="info-text">
+                    EMI is calculated automatically
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-grid">
+
+
+                <!-- NAME -->
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    {{ form.name }}
+
+                    {% for error in form.name.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    {{ form.email }}
+
+                    {% for error in form.email.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- PHONE -->
+                <div class="form-group">
+
+                    <label>
+                        Phone Number
+                    </label>
+
+                    {{ form.phone }}
+
+                    {% for error in form.phone.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- LOAN TYPE -->
+                <div class="form-group">
+
+                    <label>
+                        Loan Type
+                    </label>
+
+                    {{ form.loan_type }}
+
+                    {% for error in form.loan_type.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- LOAN AMOUNT -->
+                <div class="form-group">
+
+                    <label>
+                        Loan Amount (₹)
+                    </label>
+
+                    {{ form.loan_amount }}
+
+                    {% for error in form.loan_amount.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- MONTHLY INCOME -->
+                <div class="form-group">
+
+                    <label>
+                        Monthly Income (₹)
+                    </label>
+
+                    {{ form.monthly_income }}
+
+                    {% for error in form.monthly_income.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- EMPLOYMENT -->
+                <div class="form-group">
+
+                    <label>
+                        Employment Type
+                    </label>
+
+                    {{ form.employment }}
+
+                    {% for error in form.employment.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- PURPOSE -->
+                <div class="form-group full">
+
+                    <label>
+                        Loan Purpose
+                    </label>
+
+                    {{ form.purpose }}
+
+                    {% for error in form.purpose.errors %}
+                        <div class="error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <button type="submit" class="submit-btn">
+                🚀 Submit Loan Application
+            </button>
+
+
+            <!-- SECURITY -->
+            <div class="secure">
+                🔒 Your information is handled securely by LoanEase.
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

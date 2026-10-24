@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LoanEase - Check Status</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+            color: #222;
+        }
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 22px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.10);
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin: 10px 0 30px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4f46e5;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 35px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .result h2 {
+            color: #4f46e5;
+            text-align: center;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .detail {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .detail strong {
+            display: block;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .detail span {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: bold;
+        }
+
+        .not-found {
+            margin-top: 25px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            background: #fee2e2;
+            color: #b91c1c;
+            font-weight: bold;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 18px;
+            margin: 5px;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        .apply {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .home {
+            background: #f3f4f6;
+            color: #4f46e5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+
+        @media(max-width: 600px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+                margin-left: 8px;
+            }
+
+            .card {
+                padding: 25px 18px;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🏦 LoanEase
+        </div>
+
+        <div class="nav-links">
+            <a href="/">🏠 Home</a>
+            <a href="/apply/">⚡ Apply</a>
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="icon">
+                🔍
+            </div>
+
+            <h1>Check Loan Status</h1>
+
+            <p class="subtitle">
+                Enter your Application ID to view your loan status
+            </p>
+
+
+            <!-- STATUS SEARCH FORM -->
+
+            <form method="POST" action="{% url 'check_status' %}">
+
+                {% csrf_token %}
+
+                <label for="application_id">
+                    Application ID
+                </label>
+
+                <input
+                    type="text"
+                    id="application_id"
+                    name="application_id"
+                    placeholder="Example: 1"
+                    required
+                >
+
+                <button type="submit">
+                    🔍 Check My Status
+                </button>
+
+            </form>
+
+
+            <!-- APPLICATION FOUND -->
+
+            {% if application %}
+
+                <div class="result">
+
+                    <h2>
+                        📋 Application #{{ application.id }}
+                    </h2>
+
+                    <div class="details">
+
+                        <div class="detail">
+                            <strong>Customer Name</strong>
+                            <span>{{ application.name }}</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Loan Type</strong>
+                            <span>{{ application.loan_type }}</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Loan Amount</strong>
+                            <span>₹{{ application.loan_amount }}</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Monthly Income</strong>
+                            <span>₹{{ application.monthly_income }}</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Employment</strong>
+                            <span>{{ application.employment }}</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Interest Rate</strong>
+                            <span>{{ application.interest_rate }}%</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Loan Tenure</strong>
+                            <span>{{ application.loan_tenure }} Months</span>
+                        </div>
+
+                        <div class="detail">
+                            <strong>Monthly EMI</strong>
+                            <span>₹{{ application.emi }}</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="status">
+
+                        Current Status:
+                        {{ application.status }}
+
+                    </div>
+
+                </div>
+
+            {% elif searched %}
+
+                <div class="not-found">
+
+                    ❌ Application ID not found.
+
+                    <br><br>
+
+                    Please check your Application ID and try again.
+
+                </div>
+
+            {% endif %}
+
+
+            <div class="buttons">
+
+                <a href="/apply/" class="apply">
+                    🚀 Apply for Loan
+                </a>
+
+                <a href="/" class="home">
+                    🏠 Back to Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        🏦 LoanEase
+        <br>
+        Simple and secure online loan application system.
+    </footer>
+
+</body>
+</html>

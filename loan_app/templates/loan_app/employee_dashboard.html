@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>LoanEase - Employee Dashboard</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #1f2937;
+    }
+
+    .navbar {
+        background: #172554;
+        color: white;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        opacity: 0.8;
+        margin-top: 4px;
+    }
+
+    .logout {
+        background: #ef4444;
+        color: white;
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+    }
+
+    .container {
+        width: 92%;
+        max-width: 1250px;
+        margin: 30px auto;
+    }
+
+    .welcome {
+        margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+        font-size: 30px;
+        color: #172554;
+    }
+
+    .welcome p {
+        color: #64748b;
+        margin-top: 6px;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 22px;
+        border-radius: 14px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    }
+
+    .stat-title {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .stat-number {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #172554;
+    }
+
+    .filters {
+        background: white;
+        padding: 20px;
+        border-radius: 14px;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    }
+
+    .filters h2 {
+        margin-bottom: 15px;
+        color: #172554;
+    }
+
+    .filter-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 12px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .application-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        border-left: 5px solid #2563eb;
+    }
+
+    .application-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .application-header h2 {
+        color: #172554;
+    }
+
+    .status {
+        padding: 7px 13px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .pending {
+        background: #fef3c7;
+        color: #92400e;
+    }
+
+    .approved {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .rejected {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .detail {
+        background: #f8fafc;
+        padding: 13px;
+        border-radius: 8px;
+    }
+
+    .detail-label {
+        color: #64748b;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .detail-value {
+        font-weight: bold;
+        color: #1e293b;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        text-decoration: none;
+        padding: 11px 16px;
+        border-radius: 8px;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .approve {
+        background: #16a34a;
+    }
+
+    .reject {
+        background: #dc2626;
+    }
+
+    .status-btn {
+        background: #2563eb;
+    }
+
+    .no-results {
+        display: none;
+        text-align: center;
+        padding: 40px;
+        background: white;
+        border-radius: 14px;
+        color: #64748b;
+    }
+
+    @media (max-width: 900px) {
+        .stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .details {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .filter-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        .details {
+            grid-template-columns: 1fr;
+        }
+
+        .navbar {
+            padding: 18px;
+        }
+
+        .container {
+            width: 95%;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="navbar">
+    <div>
+        <div class="logo">LoanEase</div>
+        <div class="subtitle">Employee Loan Management Portal</div>
+    </div>
+
+    <a href="{% url 'employee_logout' %}" class="logout">
+        Logout
+    </a>
+</div>
+
+<div class="container">
+
+    <div class="welcome">
+        <h1>Employee Dashboard</h1>
+        <p>Manage and review customer loan applications.</p>
+    </div>
+
+    <!-- STATISTICS -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="stat-title">Total Applications</div>
+            <div class="stat-number">{{ applications|length }}</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Pending</div>
+            <div class="stat-number">
+                {{ applications|length }}
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Approved</div>
+            <div class="stat-number">—</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">Rejected</div>
+            <div class="stat-number">—</div>
+        </div>
+
+    </div>
+
+    <!-- FILTERS -->
+
+    <div class="filters">
+
+        <h2>Search Applications</h2>
+
+        <div class="filter-row">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by ID, name, email or phone..."
+                onkeyup="filterApplications()"
+            >
+
+            <select id="statusFilter" onchange="filterApplications()">
+                <option value="">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+            </select>
+
+            <select id="loanTypeFilter" onchange="filterApplications()">
+                <option value="">All Loan Types</option>
+                <option value="Personal">Personal</option>
+                <option value="Home">Home</option>
+                <option value="Education">Education</option>
+                <option value="Vehicle">Vehicle</option>
+                <option value="Business">Business</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <div id="applicationCount"
+         style="margin-bottom:15px;font-weight:bold;color:#64748b;">
+        {{ applications|length }} Applications
+    </div>
+
+    <!-- APPLICATIONS -->
+
+    {% if applications %}
+
+        {% for application in applications %}
+
+        <div
+            class="application-card"
+            data-id="{{ application.id }}"
+            data-name="{{ application.name|lower }}"
+            data-email="{{ application.email|lower }}"
+            data-phone="{{ application.phone|lower }}"
+            data-status="{{ application.status }}"
+            data-loan-type="{{ application.loan_type }}"
+        >
+
+            <div class="application-header">
+
+                <h2>
+                    Application #{{ application.id }}
+                </h2>
+
+                {% if application.status == "Pending" %}
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                {% elif application.status == "Approved" %}
+
+                    <span class="status approved">
+                        Approved
+                    </span>
+
+                {% else %}
+
+                    <span class="status rejected">
+                        Rejected
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+            <div class="details">
+
+                <div class="detail">
+                    <div class="detail-label">Customer Name</div>
+                    <div class="detail-value">
+                        {{ application.name }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Email</div>
+                    <div class="detail-value">
+                        {{ application.email }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Phone</div>
+                    <div class="detail-value">
+                        {{ application.phone }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Loan Type</div>
+                    <div class="detail-value">
+                        {{ application.loan_type }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Loan Amount</div>
+                    <div class="detail-value">
+                        ₹{{ application.loan_amount }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Monthly Income</div>
+                    <div class="detail-value">
+                        ₹{{ application.monthly_income }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Employment</div>
+                    <div class="detail-value">
+                        {{ application.employment }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Interest Rate</div>
+                    <div class="detail-value">
+                        {{ application.interest_rate }}%
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Loan Tenure</div>
+                    <div class="detail-value">
+                        {{ application.loan_tenure }} Months
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Monthly EMI</div>
+                    <div class="detail-value">
+                        ₹{{ application.emi }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Purpose</div>
+                    <div class="detail-value">
+                        {{ application.purpose }}
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <div class="detail-label">Application Date</div>
+                    <div class="detail-value">
+                        {{ application.created_at|date:"d M Y, h:i A" }}
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="actions">
+
+                {% if application.status == "Pending" %}
+
+                    <a
+                        href="{% url 'approve_loan' application.id %}"
+                        class="action-btn approve"
+                    >
+                        ✅ Approve Loan
+                    </a>
+
+                    <a
+                        href="{% url 'reject_loan' application.id %}"
+                        class="action-btn reject"
+                    >
+                        ❌ Reject Loan
+                    </a>
+
+                {% endif %}
+
+                <a
+                    href="{% url 'application_status' application.id %}"
+                    class="action-btn status-btn"
+                >
+                    🔍 Check Status
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="no-results" style="display:block;">
+            <h2>No Loan Applications Found</h2>
+            <p>There are currently no applications in the system.</p>
+        </div>
+
+    {% endif %}
+
+    <div id="noResults" class="no-results">
+        <h2>No Matching Applications</h2>
+        <p>Try changing your search or filters.</p>
+    </div>
+
+</div>
+
+<script>
+
+    function filterApplications() {
+
+        const searchInput =
+            document.getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
+
+        const statusFilter =
+            document.getElementById("statusFilter").value;
+
+        const loanTypeFilter =
+            document.getElementById("loanTypeFilter").value;
+
+        const cards =
+            document.querySelectorAll(".application-card");
+
+        const noResults =
+            document.getElementById("noResults");
+
+        const count =
+            document.getElementById("applicationCount");
+
+        let visibleCount = 0;
+
+        cards.forEach(function(card) {
+
+            const id =
+                card.getAttribute("data-id").toLowerCase();
+
+            const name =
+                card.getAttribute("data-name").toLowerCase();
+
+            const email =
+                card.getAttribute("data-email").toLowerCase();
+
+            const phone =
+                card.getAttribute("data-phone").toLowerCase();
+
+            const status =
+                card.getAttribute("data-status");
+
+            const loanType =
+                card.getAttribute("data-loan-type");
+
+            const searchMatch =
+                id.includes(searchInput) ||
+                name.includes(searchInput) ||
+                email.includes(searchInput) ||
+                phone.includes(searchInput);
+
+            const statusMatch =
+                statusFilter === "" ||
+                status === statusFilter;
+
+            const loanTypeMatch =
+                loanTypeFilter === "" ||
+                loanType === loanTypeFilter;
+
+            if (
+                searchMatch &&
+                statusMatch &&
+                loanTypeMatch
+            ) {
+
+                card.style.display = "block";
+                visibleCount++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+        count.innerText =
+            visibleCount + " Applications";
+
+        if (visibleCount === 0 && cards.length > 0) {
+
+            noResults.style.display = "block";
+
+        } else {
+
+            noResults.style.display = "none";
+
+        }
+    }
+
+</script>
+```
+
+</body>
+</html>

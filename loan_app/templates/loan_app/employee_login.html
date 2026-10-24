@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LoanEase - Employee Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #f3f6fc;
+        }
+
+        .box {
+            width: 400px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.10);
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+
+            background: #3155e7;
+            color: white;
+
+            border-radius: 15px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            color: #101828;
+            font-size: 28px;
+        }
+
+        .text {
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+
+            font-weight: bold;
+            font-size: 14px;
+
+            margin-bottom: 8px;
+
+            color: #344054;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #d0d5dd;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #3155e7;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #182235;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3155e7;
+        }
+
+        .error {
+            background: #fff1f0;
+
+            color: #d92d20;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+        .back {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #3155e7;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="box">
+
+    <div class="logo">
+        👨‍💼
+    </div>
+
+    <h1>
+        Employee Login
+    </h1>
+
+    <p class="text">
+        Login to the LoanEase employee portal
+        to manage customer loan applications.
+    </p>
+
+
+    {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    <!-- IMPORTANT: correct Django URL -->
+
+    <form method="POST" action="{% url 'employee_login' %}">
+
+        {% csrf_token %}
+
+
+        <label>
+            Employee ID
+        </label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter Employee ID"
+            required
+        >
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+        >
+
+
+        <button type="submit">
+            Sign In to Employee Portal →
+        </button>
+
+    </form>
+
+
+    <a
+        href="/"
+        class="back"
+    >
+        ← Back to LoanEase
+    </a>
+
+</div>
+
+</body>
+
+</html>

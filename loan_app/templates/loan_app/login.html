@@ -1,0 +1,1217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LoanEase | Smart Loan Platform</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 76px;
+            background: rgba(255,255,255,0.96);
+            border-bottom: 1px solid #e8edf5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg,#2563eb,#4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 21px;
+            box-shadow: 0 7px 18px rgba(37,99,235,0.25);
+        }
+
+        .brand-name {
+            font-size: 23px;
+            font-weight: 800;
+            color: #172033;
+        }
+
+        .brand-name span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #596579;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .employee-btn {
+            padding: 11px 19px;
+            border-radius: 10px;
+            background: #172033;
+            color: white !important;
+        }
+
+        .employee-btn:hover {
+            background: #2563eb;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero-wrapper {
+            max-width: 1250px;
+            margin: 38px auto 0;
+            padding: 0 25px;
+        }
+
+        .hero {
+            min-height: 520px;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+
+            background:
+                radial-gradient(circle at 85% 20%,
+                rgba(96,165,250,0.35),
+                transparent 28%),
+
+                radial-gradient(circle at 75% 90%,
+                rgba(129,140,248,0.30),
+                transparent 30%),
+
+                linear-gradient(120deg,#172554,#1e3a8a 50%,#2563eb);
+
+            display: flex;
+            align-items: center;
+            padding: 70px;
+            color: white;
+
+            box-shadow:
+                0 25px 60px rgba(30,64,175,0.22);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50%;
+            right: -80px;
+            top: -90px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 50%;
+            right: 60px;
+            bottom: -140px;
+        }
+
+        .hero-content {
+            width: 58%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .small-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.11);
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 9px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .small-label span {
+            width: 7px;
+            height: 7px;
+            background: #4ade80;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            max-width: 650px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #93c5fd;
+        }
+
+        .hero-description {
+            max-width: 590px;
+            color: #dbeafe;
+            font-size: 17px;
+            line-height: 1.75;
+            margin-bottom: 34px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .apply-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 23px;
+            border-radius: 11px;
+            background: white;
+            color: #1d4ed8;
+            font-size: 14px;
+            font-weight: 800;
+            transition: 0.25s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+        }
+
+        .status-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 23px;
+            border-radius: 11px;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: white;
+            background: rgba(255,255,255,0.08);
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.25s;
+        }
+
+        .status-btn:hover {
+            background: rgba(255,255,255,0.16);
+        }
+
+        /* ================= HERO CARD ================= */
+
+        .hero-card-area {
+            width: 42%;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 2;
+        }
+
+        .loan-card {
+            width: 300px;
+            background: rgba(255,255,255,0.96);
+            color: #172033;
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.22);
+            transform: rotate(2deg);
+        }
+
+        .loan-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .loan-card-title {
+            font-size: 13px;
+            color: #687386;
+            font-weight: 600;
+        }
+
+        .card-icon {
+            width: 38px;
+            height: 38px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .amount {
+            font-size: 29px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .approved {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #15803d;
+            background: #f0fdf4;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .approved-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .card-line {
+            height: 1px;
+            background: #e9edf4;
+            margin: 23px 0;
+        }
+
+        .card-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .detail-label {
+            color: #8993a5;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ================= TRUST BAR ================= */
+
+        .trust-bar {
+            max-width: 1080px;
+            margin: 30px auto 0;
+            padding: 0 25px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+        }
+
+        .trust-item {
+            background: white;
+            border: 1px solid #e8edf4;
+            border-radius: 15px;
+            padding: 19px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .trust-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 11px;
+            background: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .trust-item h4 {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .trust-item p {
+            color: #7a8597;
+            font-size: 11px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            max-width: 1100px;
+            margin: 75px auto 0;
+            padding: 0 25px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading .tag {
+            color: #2563eb;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 31px;
+            color: #172033;
+            margin-bottom: 9px;
+        }
+
+        .section-heading p {
+            color: #788397;
+            font-size: 14px;
+        }
+
+        /* ================= SERVICE CARDS ================= */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+        }
+
+        .service {
+            background: white;
+            border: 1px solid #e8edf4;
+            border-radius: 17px;
+            padding: 25px 21px;
+            min-height: 190px;
+            transition: 0.28s;
+            position: relative;
+        }
+
+        .service:hover {
+            transform: translateY(-7px);
+            border-color: #bfdbfe;
+            box-shadow: 0 17px 35px rgba(37,99,235,0.10);
+        }
+
+        .service-icon {
+            width: 47px;
+            height: 47px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 21px;
+            margin-bottom: 19px;
+        }
+
+        .service h3 {
+            font-size: 15px;
+            margin-bottom: 9px;
+        }
+
+        .service p {
+            color: #7a8597;
+            line-height: 1.6;
+            font-size: 12px;
+            margin-bottom: 17px;
+        }
+
+        .service-arrow {
+            color: #2563eb;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* ================= HOW IT WORKS ================= */
+
+        .process {
+            margin-top: 70px;
+            background: #ffffff;
+            border: 1px solid #e8edf4;
+            border-radius: 22px;
+            padding: 38px;
+        }
+
+        .process-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .process-title h2 {
+            font-size: 26px;
+            margin-bottom: 7px;
+        }
+
+        .process-title p {
+            color: #7a8597;
+            font-size: 13px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 35px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .step h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .step p {
+            color: #7a8597;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* ================= EMPLOYEE ================= */
+
+        .employee-section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 25px;
+        }
+
+        .employee-box {
+            border-radius: 20px;
+            background: #172033;
+            color: white;
+            padding: 30px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .employee-box h2 {
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .employee-box p {
+            color: #aeb8c9;
+            font-size: 12px;
+        }
+
+        .employee-login {
+            background: white;
+            color: #172033;
+            padding: 13px 21px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+            transition: 0.25s;
+        }
+
+        .employee-login:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #101827;
+            color: white;
+            padding: 38px 7%;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .footer-brand span {
+            color: #60a5fa;
+        }
+
+        .footer-text {
+            color: #8792a5;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        .copyright {
+            color: #687386;
+            font-size: 11px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 950px) {
+
+            .hero {
+                padding: 50px;
+            }
+
+            .hero-content {
+                width: 65%;
+            }
+
+            .hero-card-area {
+                width: 35%;
+            }
+
+            .loan-card {
+                width: 260px;
+            }
+
+            .services {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media(max-width: 750px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a:not(.employee-btn) {
+                display: none;
+            }
+
+            .hero {
+                padding: 40px 28px;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-card-area {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .trust-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .employee-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media(max-width: 520px) {
+
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .employee-btn {
+                padding: 9px 12px;
+                font-size: 11px !important;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .apply-btn,
+            .status-btn {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .process {
+                padding: 25px 18px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            🏦
+        </div>
+
+        <div class="brand-name">
+            Loan<span>Ease</span>
+        </div>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'loan_details' %}">
+            Loan Products
+        </a>
+
+        <a href="{% url 'check_status' %}">
+            Check Status
+        </a>
+
+        <a href="{% url 'employee_login' %}" class="employee-btn">
+            Employee Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<div class="hero-wrapper">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-label">
+                <span></span>
+                SMART & SIMPLE LOAN PLATFORM
+            </div>
+
+
+            <h1>
+                Finance your plans
+                <span>with confidence.</span>
+            </h1>
+
+
+            <p class="hero-description">
+
+                Apply for a loan online, view your loan information,
+                calculate your monthly EMI and track your application
+                status — all from one simple platform.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'loan_application' %}" class="apply-btn">
+                    Apply for a Loan
+                    <span>→</span>
+                </a>
+
+                <a href="{% url 'check_status' %}" class="status-btn">
+                    Check Application
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOAN PREVIEW CARD -->
+
+        <div class="hero-card-area">
+
+            <div class="loan-card">
+
+                <div class="loan-card-top">
+
+                    <div class="loan-card-title">
+                        LOAN APPLICATION
+                    </div>
+
+                    <div class="card-icon">
+                        ₹
+                    </div>
+
+                </div>
+
+
+                <div class="amount">
+                    ₹2,50,000
+                </div>
+
+
+                <div class="approved">
+
+                    <span class="approved-dot"></span>
+
+                    Application Ready
+
+                </div>
+
+
+                <div class="card-line"></div>
+
+
+                <div class="card-details">
+
+                    <div>
+                        <div class="detail-label">
+                            INTEREST RATE
+                        </div>
+
+                        <div class="detail-value">
+                            10% p.a.
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="detail-label">
+                            TENURE
+                        </div>
+
+                        <div class="detail-value">
+                            12 Months
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="detail-label">
+                            MONTHLY EMI
+                        </div>
+
+                        <div class="detail-value">
+                            ₹21,978
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="detail-label">
+                            STATUS
+                        </div>
+
+                        <div class="detail-value">
+                            Pending
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- ================= TRUST FEATURES ================= -->
+
+<div class="trust-bar">
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            ⚡
+        </div>
+
+        <div>
+            <h4>Quick Application</h4>
+            <p>Simple online loan process</p>
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            🔒
+        </div>
+
+        <div>
+            <h4>Secure Information</h4>
+            <p>Your application stays protected</p>
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            📊
+        </div>
+
+        <div>
+            <h4>Easy Tracking</h4>
+            <p>Track your application anytime</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div class="tag">
+            LOANEASE SERVICES
+        </div>
+
+        <h2>
+            Everything you need in one place
+        </h2>
+
+        <p>
+            Choose a service to get started with your loan journey.
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+        <!-- APPLY -->
+
+        <a href="{% url 'loan_application' %}" class="service">
+
+            <div class="service-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Quick Apply
+            </h3>
+
+            <p>
+                Start a new loan application using our simple
+                online application form.
+            </p>
+
+            <div class="service-arrow">
+                Start Application →
+            </div>
+
+        </a>
+
+
+        <!-- STATUS -->
+
+        <a href="{% url 'check_status' %}" class="service">
+
+            <div class="service-icon">
+                🔍
+            </div>
+
+            <h3>
+                Check Status
+            </h3>
+
+            <p>
+                Enter your application ID and check the current
+                status of your loan.
+            </p>
+
+            <div class="service-arrow">
+                Track Application →
+            </div>
+
+        </a>
+
+
+<!-- LOAN INFORMATION -->
+<a href="{% url 'loan_details' %}" class="service">
+
+    <div class="service-icon">
+        💳
+    </div>
+
+    <h3>
+        Loan Information
+    </h3>
+
+    <p>
+        Learn about interest rates, loan amount, EMI,
+        eligibility, required documents and processing fees.
+    </p>
+
+    <div class="service-arrow">
+        View Information →
+    </div>
+
+</a>
+
+
+
+        <!-- EMPLOYEE -->
+
+        <a href="{% url 'employee_login' %}" class="service">
+
+            <div class="service-icon">
+                👨‍💼
+            </div>
+
+            <h3>
+                Employee Portal
+            </h3>
+
+            <p>
+                Authorized employees can manage applications
+                and update loan status.
+            </p>
+
+            <div class="service-arrow">
+                Employee Login →
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="section">
+
+    <div class="process">
+
+        <div class="process-title">
+
+            <h2>
+                How LoanEase Works
+            </h2>
+
+            <p>
+                A simple three-step loan application process.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    Submit Application
+                </h3>
+
+                <p>
+                    Enter your personal, employment and
+                    loan details through the application form.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>
+                    Application Review
+                </h3>
+
+                <p>
+                    Your application can be reviewed by
+                    the authorized LoanEase employee.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    Track Your Loan
+                </h3>
+
+                <p>
+                    Use your application ID to check the
+                    latest application status.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EMPLOYEE PORTAL ================= -->
+
+<section class="employee-section">
+
+    <div class="employee-box">
+
+        <div>
+
+            <h2>
+                LoanEase Employee Portal
+            </h2>
+
+            <p>
+                Authorized employees can review customer
+                applications and manage loan status.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'employee_login' %}" class="employee-login">
+            Access Employee Portal →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <div class="footer-brand">
+                Loan<span>Ease</span>
+            </div>
+
+            <div class="footer-text">
+                Simple. Secure. Smarter loan management.
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 LoanEase. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+
